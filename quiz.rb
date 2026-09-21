@@ -1,4 +1,6 @@
 require_relative "question"
+require_relative "multiplechiose"
+require_relative "true_false"
 
 questions = [
   Question.new("Vad heter huvudstaden i Norge?", "Oslo"),
@@ -6,6 +8,9 @@ questions = [
   Question.new("Vad svarar 5.class?", "Integer"),
   Question.new("Vad är 5 + 7", "12"),
   Question.new("En hund är människans bästa _", "vän"),
+  MultipleChoice.new("Vilket djur är Kalle Anka?", ["anka", "hund", "drake"], "anka"),
+  MultipleChoice.new("Vilket huvudbodnad skall man använmda när man cyklar?", ["mössa", "riddarhjälm", "cyckelhjälm", "helikopterhatt","keps"], "cyckelhjälm"),
+  TrueFalse.new("är du vacker", true)
 ]
 
 #q = Question.new("test", "Oslo")        # ArgumentError: prompt must not be empty
@@ -19,7 +24,7 @@ questions.each do |q|
   if q.correct?(reply)
     puts "Rätt!"
     score += 1
-  else
+  elsif q.class =! TrueFalse      #OBS!!!! NÅGOT GÅR FEL NÄR MAN SKALL KÖRA .CLASS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     puts "Fel. Hint: #{q.hint}"
     reply = q.ask
     if q.correct?(reply)
@@ -28,6 +33,8 @@ questions.each do |q|
     else
       puts "Fel. Rätt svar: #{q.answer}"
     end
+  else
+    puts "Fel. Rätt svar: #{q.answer}"
   end
 end
 

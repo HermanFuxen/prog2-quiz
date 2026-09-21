@@ -4,7 +4,7 @@ class Question
   
   def initialize(prompt, answer)
     raise ArgumentError, "prompt must not be empty" if prompt.empty?
-    raise ArgumentError, "answer must not be empty" if answer.empty?
+    raise ArgumentError, "answer must not be empty" if answer.to_s.empty?
 
     @prompt = prompt #"@"" betyder: det här tillhör objektet(som defineras att tillhöra classen Quiestion), inte metoden initialize, viketär varför den kan användas i andra metoddefinitioner.
     @answer = answer
