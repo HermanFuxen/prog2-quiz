@@ -24,7 +24,7 @@ questions.each do |q|
   if q.correct?(reply)
     puts "Rätt!"
     score += 1
-  elsif q.class =! TrueFalse      #OBS!!!! NÅGOT GÅR FEL NÄR MAN SKALL KÖRA .CLASS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+  elsif q.class != TrueFalse
     puts "Fel. Hint: #{q.hint}"
     reply = q.ask
     if q.correct?(reply)
