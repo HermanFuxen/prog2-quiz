@@ -16,4 +16,8 @@ class TrueFalse < Question
     {"sant" => true, "falskt" => false}[reply.strip.downcase] == answer
   end
 
+  def hashint?
+    false
+  end
+
 end

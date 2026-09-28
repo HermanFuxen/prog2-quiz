@@ -36,6 +36,10 @@ class Question
     @answer[0]
   end
 
+  def hashint?
+    true
+  end
+
   def to_s
     "#{prompt} (#{answer})"
   end

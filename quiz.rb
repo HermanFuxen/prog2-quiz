@@ -1,6 +1,8 @@
 require_relative "question"
 require_relative "multiplechiose"
 require_relative "true_false"
+require_relative "numeric_question"
+require_relative "self_graded"
 
 questions = [
   Question.new("Vad heter huvudstaden i Norge?", "Oslo"),
@@ -10,21 +12,26 @@ questions = [
   Question.new("En hund är människans bästa _", "vän"),
   MultipleChoice.new("Vilket djur är Kalle Anka?", ["anka", "hund", "drake"], "anka"),
   MultipleChoice.new("Vilket huvudbodnad skall man använmda när man cyklar?", ["mössa", "riddarhjälm", "cyckelhjälm", "helikopterhatt","keps"], "cyckelhjälm"),
-  TrueFalse.new("är du vacker", true)
+  TrueFalse.new("är du vacker", true),
+  TrueFalse.new("är havet en massa vatten?",true),
+  NumericQuestion.new("Hur många fingrar han en hand?", 5),
+  SelfGraded.new("vad är gella alfabetet", "abcdefghijklmnopqrstuvwxyzåäö")
 ]
 
 #q = Question.new("test", "Oslo")        # ArgumentError: prompt must not be empty
 #q.answer = "x"                          # NoMethodError: undefined method 'answer='
 #q.answer                        # => "Oslo"   att läsa går bra, det meddelandet finns 
 
+p SelfGraded.new("vad är gella alfabetet", "abcdefghijklmnopqrstuvwxyzåäö").answer
+
 score = 0
 
-questions.each do |q|
+questions.each do |q| #prova att flyta scarmedelande till klasserna nästa lektion
   reply = q.ask
   if q.correct?(reply)
-    puts "Rätt!"
+  puts "Rätt!"
     score += 1
-  elsif q.class != TrueFalse
+  elsif q.hashint?
     puts "Fel. Hint: #{q.hint}"
     reply = q.ask
     if q.correct?(reply)
